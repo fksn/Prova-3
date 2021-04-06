@@ -1,0 +1,65 @@
+    #include <stdio.h>
+    void le_mat(int (*p)[10], int L, int C);
+    void bissimetrica(int (*p)[10], int L, int C);
+     
+    int main()
+    {
+        int l, c;
+        int p[10][10]; 
+        scanf("%d", &l);
+        if (l >= 1 && l <= 10)
+        {
+            le_mat(p, l, l);
+            bissimetrica(p, l, l);
+        }
+        else
+        {
+            printf("dimensao invalida\n");
+        }
+        return 0;
+    }
+    void le_mat(int (*p)[10], int L, int C)
+    {
+        int l, c;
+        for (l = 0; l < L; l++)
+        {
+            for (c = 0; c < C; c++)
+            {
+                scanf("%d", &p[l][c]);
+            }
+        }
+    }
+    void bissimetrica(int (*p)[10], int L, int C)
+    {
+        int l, c, aux = 0;
+        for (l = 0; l < L; l++)
+        {
+            for (c = l+1; c < C; c++)
+            {
+                if (p[l][c] != p[c][l])
+                {
+                    aux = 1;
+                    break;
+                }
+            }
+        }
+        for (l = L-1; l > 0; l--)
+        {
+            for (c = 1; c < C; c++)
+            {
+                if (p[l][c] != p[L-c-1][C-l-1])
+                {
+                    aux = 1;
+                    break;
+                }
+            }
+        }
+        if (aux == 1)
+        {
+            printf("nao bissimetrica\n");
+        }
+        else
+        {
+            printf("bissimetrica\n");
+        }
+    }
