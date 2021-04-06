@@ -1,0 +1,73 @@
+#include <stdio.h>
+void le_mat(int (*p)[10], int L, int C);
+void elemento_unico(int (*p)[10], int L, int C);
+
+int main()
+{
+    int l, c;
+    int p[10][10]; 
+    scanf("%d %d", &l, &c);
+    if (l > 10 || c > 10 || c <=0 || l <= 0)
+    {
+        printf("dimensao invalida\n");
+    }
+    else
+    {
+        le_mat(p, l, c);
+        elemento_unico(p, l, c);
+    }
+    return 0;
+}
+void le_mat(int (*p)[10], int L, int C)
+{
+    int l, c;
+    for (l = 0; l < L; l++)
+    {
+        for (c = 0; c < C; c++)
+        {
+            scanf("%d", &p[l][c]);
+        }
+    }
+}
+void elemento_unico(int (*p)[10], int L, int C)
+{
+    int l, c, x, y, cont, aux = 0, a = 0;
+    for (l = 0; l < L; l++)
+    {
+        for (c = 0; c < C; c++)
+        {
+            cont = 0;
+            for (x = 0; x < L; x++)
+            {
+                for (y = 0; y < C; y++)
+                {
+                    if (p[l][c] == p[x][y])
+                    {
+                        // printf("%d\n", p[l][c]);
+                        cont++;
+                    }
+                }
+            }
+            // if (aux > 1 && cont == 1)
+            // {
+            //     printf(",");
+            // }
+            
+            if (cont == 1)
+            {
+                if (a != 0)
+                {
+                    printf(",");
+                }
+                
+                printf("%d", p[l][c]);
+                a++;
+            }
+        }
+    }
+    if (a == 0)
+    {
+        printf("sem elementos unicos");
+    }
+    printf("\n");
+}
